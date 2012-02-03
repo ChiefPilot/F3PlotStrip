@@ -1,0 +1,324 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		C60DB94814DAC0C1007298A9 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = C60DB94714DAC0C1007298A9 /* background.png */; };
+		C67AEEC614DB0729006807E9 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = C67AEEC514DB0729006807E9 /* Icon.png */; };
+		C67AEEC914DB072C006807E9 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C67AEEC814DB072C006807E9 /* Icon@2x.png */; };
+		C6E6C97D14D9DA7400A08E48 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6E6C97C14D9DA7400A08E48 /* UIKit.framework */; };
+		C6E6C97F14D9DA7400A08E48 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6E6C97E14D9DA7400A08E48 /* Foundation.framework */; };
+		C6E6C98114D9DA7400A08E48 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6E6C98014D9DA7400A08E48 /* CoreGraphics.framework */; };
+		C6E6C98714D9DA7400A08E48 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C6E6C98514D9DA7400A08E48 /* InfoPlist.strings */; };
+		C6E6C98914D9DA7400A08E48 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C6E6C98814D9DA7400A08E48 /* main.m */; };
+		C6E6C98D14D9DA7400A08E48 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C6E6C98C14D9DA7400A08E48 /* AppDelegate.m */; };
+		C6E6C99014D9DA7400A08E48 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C6E6C98F14D9DA7400A08E48 /* ViewController.m */; };
+		C6E6C99314D9DA7400A08E48 /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C6E6C99114D9DA7400A08E48 /* ViewController.xib */; };
+		C6E6C99E14D9DAB500A08E48 /* F3PlotStrip.m in Sources */ = {isa = PBXBuildFile; fileRef = C6E6C99D14D9DAB500A08E48 /* F3PlotStrip.m */; };
+		C6EA342014DC8C0300D81239 /* RedBtnBg.png in Resources */ = {isa = PBXBuildFile; fileRef = C6EA341F14DC8C0300D81239 /* RedBtnBg.png */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		C60DB94714DAC0C1007298A9 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
+		C67AEEC514DB0729006807E9 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		C67AEEC814DB072C006807E9 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
+		C6E6C97814D9DA7400A08E48 /* F3PlotStripDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = F3PlotStripDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C6E6C97C14D9DA7400A08E48 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		C6E6C97E14D9DA7400A08E48 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		C6E6C98014D9DA7400A08E48 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		C6E6C98414D9DA7400A08E48 /* F3PlotStripDemo-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "F3PlotStripDemo-Info.plist"; sourceTree = "<group>"; };
+		C6E6C98614D9DA7400A08E48 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		C6E6C98814D9DA7400A08E48 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		C6E6C98A14D9DA7400A08E48 /* F3PlotStripDemo-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "F3PlotStripDemo-Prefix.pch"; sourceTree = "<group>"; };
+		C6E6C98B14D9DA7400A08E48 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		C6E6C98C14D9DA7400A08E48 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		C6E6C98E14D9DA7400A08E48 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		C6E6C98F14D9DA7400A08E48 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		C6E6C99214D9DA7400A08E48 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController.xib; sourceTree = "<group>"; };
+		C6E6C99C14D9DAB500A08E48 /* F3PlotStrip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = F3PlotStrip.h; sourceTree = "<group>"; };
+		C6E6C99D14D9DAB500A08E48 /* F3PlotStrip.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = F3PlotStrip.m; sourceTree = "<group>"; };
+		C6EA341F14DC8C0300D81239 /* RedBtnBg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RedBtnBg.png; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		C6E6C97514D9DA7400A08E48 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C6E6C97D14D9DA7400A08E48 /* UIKit.framework in Frameworks */,
+				C6E6C97F14D9DA7400A08E48 /* Foundation.framework in Frameworks */,
+				C6E6C98114D9DA7400A08E48 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		C60DB94414DAC057007298A9 /* F3PlotStrip */ = {
+			isa = PBXGroup;
+			children = (
+				C6E6C99C14D9DAB500A08E48 /* F3PlotStrip.h */,
+				C6E6C99D14D9DAB500A08E48 /* F3PlotStrip.m */,
+			);
+			path = F3PlotStrip;
+			sourceTree = "<group>";
+		};
+		C60DB94614DAC096007298A9 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				C6EA341F14DC8C0300D81239 /* RedBtnBg.png */,
+				C67AEEC814DB072C006807E9 /* Icon@2x.png */,
+				C67AEEC514DB0729006807E9 /* Icon.png */,
+				C60DB94714DAC0C1007298A9 /* background.png */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		C6E6C96D14D9DA7400A08E48 = {
+			isa = PBXGroup;
+			children = (
+				C60DB94414DAC057007298A9 /* F3PlotStrip */,
+				C6E6C98214D9DA7400A08E48 /* Demo App */,
+				C60DB94614DAC096007298A9 /* Resources */,
+				C6E6C97B14D9DA7400A08E48 /* Frameworks */,
+				C6E6C97914D9DA7400A08E48 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		C6E6C97914D9DA7400A08E48 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C6E6C97814D9DA7400A08E48 /* F3PlotStripDemo.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C6E6C97B14D9DA7400A08E48 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C6E6C97C14D9DA7400A08E48 /* UIKit.framework */,
+				C6E6C97E14D9DA7400A08E48 /* Foundation.framework */,
+				C6E6C98014D9DA7400A08E48 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C6E6C98214D9DA7400A08E48 /* Demo App */ = {
+			isa = PBXGroup;
+			children = (
+				C6E6C98B14D9DA7400A08E48 /* AppDelegate.h */,
+				C6E6C98C14D9DA7400A08E48 /* AppDelegate.m */,
+				C6E6C98E14D9DA7400A08E48 /* ViewController.h */,
+				C6E6C98F14D9DA7400A08E48 /* ViewController.m */,
+				C6E6C99114D9DA7400A08E48 /* ViewController.xib */,
+				C6E6C98314D9DA7400A08E48 /* Supporting Files */,
+			);
+			name = "Demo App";
+			path = F3PlotStrip;
+			sourceTree = "<group>";
+		};
+		C6E6C98314D9DA7400A08E48 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				C6E6C98414D9DA7400A08E48 /* F3PlotStripDemo-Info.plist */,
+				C6E6C98514D9DA7400A08E48 /* InfoPlist.strings */,
+				C6E6C98814D9DA7400A08E48 /* main.m */,
+				C6E6C98A14D9DA7400A08E48 /* F3PlotStripDemo-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		C6E6C97714D9DA7400A08E48 /* F3PlotStripDemo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C6E6C99914D9DA7400A08E48 /* Build configuration list for PBXNativeTarget "F3PlotStripDemo" */;
+			buildPhases = (
+				C6E6C97414D9DA7400A08E48 /* Sources */,
+				C6E6C97514D9DA7400A08E48 /* Frameworks */,
+				C6E6C97614D9DA7400A08E48 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = F3PlotStripDemo;
+			productName = F3PlotStrip;
+			productReference = C6E6C97814D9DA7400A08E48 /* F3PlotStripDemo.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		C6E6C96F14D9DA7400A08E48 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+				ORGANIZATIONNAME = "Flight III Systems";
+			};
+			buildConfigurationList = C6E6C97214D9DA7400A08E48 /* Build configuration list for PBXProject "F3PlotStripDemo" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = C6E6C96D14D9DA7400A08E48;
+			productRefGroup = C6E6C97914D9DA7400A08E48 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				C6E6C97714D9DA7400A08E48 /* F3PlotStripDemo */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		C6E6C97614D9DA7400A08E48 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C6E6C98714D9DA7400A08E48 /* InfoPlist.strings in Resources */,
+				C6E6C99314D9DA7400A08E48 /* ViewController.xib in Resources */,
+				C60DB94814DAC0C1007298A9 /* background.png in Resources */,
+				C67AEEC614DB0729006807E9 /* Icon.png in Resources */,
+				C67AEEC914DB072C006807E9 /* Icon@2x.png in Resources */,
+				C6EA342014DC8C0300D81239 /* RedBtnBg.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C6E6C97414D9DA7400A08E48 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C6E6C98914D9DA7400A08E48 /* main.m in Sources */,
+				C6E6C98D14D9DA7400A08E48 /* AppDelegate.m in Sources */,
+				C6E6C99014D9DA7400A08E48 /* ViewController.m in Sources */,
+				C6E6C99E14D9DAB500A08E48 /* F3PlotStrip.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		C6E6C98514D9DA7400A08E48 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C6E6C98614D9DA7400A08E48 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		C6E6C99114D9DA7400A08E48 /* ViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C6E6C99214D9DA7400A08E48 /* en */,
+			);
+			name = ViewController.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		C6E6C99714D9DA7400A08E48 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		C6E6C99814D9DA7400A08E48 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		C6E6C99A14D9DA7400A08E48 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "F3PlotStrip/F3PlotStripDemo-Prefix.pch";
+				INFOPLIST_FILE = "F3PlotStrip/F3PlotStripDemo-Info.plist";
+				PRODUCT_NAME = F3PlotStripDemo;
+				TARGETED_DEVICE_FAMILY = 1;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		C6E6C99B14D9DA7400A08E48 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "F3PlotStrip/F3PlotStripDemo-Prefix.pch";
+				INFOPLIST_FILE = "F3PlotStrip/F3PlotStripDemo-Info.plist";
+				PRODUCT_NAME = F3PlotStripDemo;
+				TARGETED_DEVICE_FAMILY = 1;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C6E6C97214D9DA7400A08E48 /* Build configuration list for PBXProject "F3PlotStripDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C6E6C99714D9DA7400A08E48 /* Debug */,
+				C6E6C99814D9DA7400A08E48 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C6E6C99914D9DA7400A08E48 /* Build configuration list for PBXNativeTarget "F3PlotStripDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C6E6C99A14D9DA7400A08E48 /* Debug */,
+				C6E6C99B14D9DA7400A08E48 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = C6E6C96F14D9DA7400A08E48 /* Project object */;
+}
