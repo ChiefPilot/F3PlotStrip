@@ -52,6 +52,9 @@
 @property (readwrite, nonatomic)  float     lineWidth;    // Width of plot line, in pixels
 @property (retain, nonatomic)     UILabel   *label;       // Associated UILabel view (may be nil)
 @property (retain, nonatomic)     NSString  *labelFormat; // Format string for UILabel text (may be nil)
+@property (readwrite, nonatomic)          float     baselineValue;    // Baseline value, shown as horizontal line
+@property (readwrite, nonatomic, retain)  UIColor   *baselineColor;   // Color of baseline
+@property (readwrite, nonatomic)          float     baselineWidth;    // Thickness of baseline (pixels)
 
 // Public methods
 -(void) clear;                            // Clears plot history
@@ -59,5 +62,6 @@
 -(void) setData:(NSArray *)a_dataArray;   // Sets complete plot data
 -(void) setLabel:(UILabel *)a_label       // Sets associated UILabel and format to receive value
        andFormat:(NSString *)a_strFmt;
+-(void) clearBaseline;                    // Clear baseline value
 
 @end

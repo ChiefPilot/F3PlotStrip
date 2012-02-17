@@ -47,12 +47,15 @@
                 m_flLowerLimit,     // Minimum plotted value
                 m_flHighWaterValue, // Maximum value seen in data
                 m_flLowWaterValue,  // Minimum value seen in data
-                m_flLineWidth;      // Width of plot line, in pixels
+                m_flLineWidth,      // Width of plot line, in pixels
+                m_flBaselineValue,  // Baseline value
+                m_flBaselineWidth;  // Width/thickness of baseline (pixels)
   int           m_iHistorySize,     // Max number of entries in history array
                 m_iHistoryCount,    // Number of values in history array
                 m_iHistoryIdx;      // Current position in history array
   NSString      *m_strLabelFmt;     // Label format string
-  UIColor       *m_lineColor;       // Color of plot line
+  UIColor       *m_lineColor,       // Color of plot line
+                *m_baselineColor;   // Color of baseline
   UILabel       *m_valueLabel;      // Associated label for to receive value
 }
 
@@ -82,6 +85,9 @@
 @synthesize count = m_iHistoryCount;
 @synthesize label = m_valueLabel;
 @synthesize labelFormat = m_strLabelFmt;
+@synthesize baselineValue = m_flBaselineValue;
+@synthesize baselineWidth = m_flBaselineWidth;
+@synthesize baselineColor = m_baselineColor;
 
 
 #pragma mark - Initialization and Termination
@@ -290,12 +296,12 @@
   flDefault = m_flLowerLimit + fabs(m_flUpperLimit - m_flLowerLimit) / 2;
   for(int iX = 0; iX < m_iHistorySize; ++iX) {
     // Save it
-    m_pHistory[ iX ] = flDefault;
+    m_pHistory[ iX ] = 0.0f; // flDefault;
   }
   
   // Reset high/low watermarks
-  m_flLowWaterValue = INFINITY;    
-  m_flHighWaterValue = -INFINITY;
+  m_flHighWaterValue  = (isnan(m_flBaselineValue)) ? -INFINITY : m_flBaselineValue;
+  m_flLowWaterValue   = (isnan(m_flBaselineValue)) ? INFINITY : m_flBaselineValue;
   
   // Reset indexes
   m_iHistoryIdx   = 0;
@@ -345,6 +351,33 @@
 }
 
 
+//------------------------------------------------------------------------
+//  Method: clearBaseline
+//    Removes baseline from display
+//
+-(void) clearBaseline
+{
+  // Set baseline value to NAN - this removes it from the plot
+  m_flBaselineValue = NAN;
+}
+
+
+//------------------------------------------------------------------------
+//  Method: setBaseline:
+//    Sets the baseline value
+//
+-(void) setBaselineValue:(float)a_flValue
+{
+  // Update the baseline value along with high/low water limits
+  m_flBaselineValue   = a_flValue;
+  m_flHighWaterValue  = MAX(m_flHighWaterValue, a_flValue);
+  m_flLowWaterValue   = MIN(m_flLowWaterValue, a_flValue);
+  
+  // Update the display
+  [self setNeedsDisplay];
+}
+
+
 
 #pragma mark - Drawing
 //------------------------------------------------------------------------
@@ -377,6 +410,19 @@
   
   // Get stuff needed for drawing
   ctx = UIGraphicsGetCurrentContext();
+  
+  // Draw baseline?
+  if( !isnan(m_flBaselineValue) ) {
+    // Yes, do it
+    CGContextSetStrokeColorWithColor(ctx, m_baselineColor.CGColor);
+    CGContextSetLineWidth(ctx, m_flBaselineWidth);
+    flY = flMax - (flYScale * (m_flBaselineValue - flLow));
+    CGContextMoveToPoint(ctx, CGRectGetMinX(rectBounds), flY);
+    CGContextAddLineToPoint(ctx, CGRectGetMaxX(rectBounds), flY);
+    CGContextStrokePath(ctx);
+  }
+  
+  // Set attributes for drawing plot line
   CGContextSetStrokeColorWithColor(ctx, m_lineColor.CGColor);
   CGContextSetLineWidth(ctx, m_flLineWidth);
   
@@ -444,6 +490,11 @@
   m_flLowWaterValue   = INFINITY;    
   m_flHighWaterValue  = -INFINITY;
   
+  // Baseline items
+  m_flBaselineValue   = NAN;
+  m_flBaselineWidth   = 1.0f;
+  m_baselineColor     = [[UIColor grayColor] retain];
+  
   // Initialize plot history
   [self setCapacity:100];
   [self clear];
@@ -463,7 +514,8 @@
   // Do we have a value label to be updated?
   if(m_valueLabel) {
     // Yes, update it
-    m_valueLabel.text = [NSString stringWithFormat:m_strLabelFmt, self.value];
+    float flValue = (isnan(self.value)) ? 0.0f : self.value;
+    m_valueLabel.text = [NSString stringWithFormat:m_strLabelFmt, flValue];
   }
 }
 

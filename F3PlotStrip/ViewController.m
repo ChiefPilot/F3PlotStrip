@@ -55,6 +55,7 @@
   // Configure the slider plot strip
   // ... This strip figures out the high/low limits dynamically
   sliderPlotStrip.capacity = 300;
+  sliderPlotStrip.baselineValue = 0.0;
   sliderPlotStrip.lineColor = [UIColor redColor];
   sliderPlotStrip.showDot = YES;
   sliderPlotStrip.labelFormat = @"Event-driven: (%0.02f)";
