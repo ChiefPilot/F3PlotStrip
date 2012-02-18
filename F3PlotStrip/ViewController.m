@@ -58,7 +58,7 @@
   sliderPlotStrip.baselineValue = 0.0;
   sliderPlotStrip.lineColor = [UIColor redColor];
   sliderPlotStrip.showDot = YES;
-  sliderPlotStrip.labelFormat = @"Event-driven: (%0.02f)";
+  sliderPlotStrip.labelFormat = @"Event-driven w/baseline: (%0.02f)";
   sliderPlotStrip.label = sliderPlotLabel;
   
   // Configure the temperature plot strip (sparkline)
