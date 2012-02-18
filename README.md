@@ -29,7 +29,7 @@ Usage
 Adding this control to your XCode project is straightforward:
 
 1. Add the F3PlotStrip.h and F3PlotStrip.m files to your project
-2. Add a new blank subview to the nib, sized and positioned to match what the bar gauge should look like.
+2. Add a new blank subview to the nib, sized and positioned to match what the plot strip should look like.
 3. In the properties inspector for this subview, change the class to "F3PlotStrip"
 4. Add an outlet to represent the control
 5. Update your code to set the value property as appropriate.

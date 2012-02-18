@@ -9,11 +9,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "F3PlotStrip/F3PlotStrip.m"
-         timestampString = "349997480.358831"
+         timestampString = "351207780.957411"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "357"
-         endingLineNumber = "357"
+         startingLineNumber = "390"
+         endingLineNumber = "390"
          landmarkName = "-drawRect:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -23,13 +23,13 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "F3PlotStrip/F3PlotStrip.m"
-         timestampString = "349997480.358831"
+         timestampString = "351203282.363847"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "132"
-         endingLineNumber = "132"
-         landmarkName = "-setValue:"
-         landmarkType = "5">
+         startingLineNumber = "138"
+         endingLineNumber = "138"
+         landmarkName = "@implementation F3PlotStrip"
+         landmarkType = "3">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
@@ -43,6 +43,20 @@
          startingLineNumber = "47"
          endingLineNumber = "47"
          landmarkName = "-viewDidLoad"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "1"
+         filePath = "F3PlotStrip/F3PlotStrip.m"
+         timestampString = "351207798.611047"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "296"
+         endingLineNumber = "296"
+         landmarkName = "-clear"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>
