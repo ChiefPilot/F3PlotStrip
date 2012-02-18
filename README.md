@@ -63,7 +63,10 @@ works best when plotting live data and will scroll the plot area as
 needed.
 - The upper and lower limits are determined dynamically by default but
 may also be specified manually.   Again, see the demo for examples.
-
+- Baseline functionality allows a horizontal line to be drawn on the
+plot for a specific value.   The demo code, which is set up to follow
+the slider control through values between -1.0 and +1.0 uses this 
+feature to show where zero is at on the plot.
 
 License
 -------
