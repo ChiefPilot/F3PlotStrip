@@ -41,22 +41,24 @@
 #pragma mark - Private-ish Extension
 @interface F3PlotStrip()
 {
-  BOOL          m_fShowDot;         // YES = show dot on most recent value
-  float         *m_pHistory,        // Pointer to array of floats containing value history
-                m_flUpperLimit,     // Maximum plotted value
-                m_flLowerLimit,     // Minimum plotted value
-                m_flHighWaterValue, // Maximum value seen in data
-                m_flLowWaterValue,  // Minimum value seen in data
-                m_flLineWidth,      // Width of plot line, in pixels
-                m_flBaselineValue,  // Baseline value
-                m_flBaselineWidth;  // Width/thickness of baseline (pixels)
-  int           m_iHistorySize,     // Max number of entries in history array
-                m_iHistoryCount,    // Number of values in history array
-                m_iHistoryIdx;      // Current position in history array
-  NSString      *m_strLabelFmt;     // Label format string
-  UIColor       *m_lineColor,       // Color of plot line
-                *m_baselineColor;   // Color of baseline
-  UILabel       *m_valueLabel;      // Associated label for to receive value
+  BOOL          m_fShowDot;             // YES = show dot on most recent value
+  float         *m_pHistory,            // Pointer to array of floats containing value history
+                m_flUpperLimit,         // Maximum plotted value
+                m_flLowerLimit,         // Minimum plotted value
+                m_flHighWaterValue,     // Maximum value seen in data
+                m_flLowWaterValue,      // Minimum value seen in data
+                m_flLineWidth,          // Width of plot line, in pixels
+                m_flBaselineValue,      // Baseline value
+                m_flBaselineWidth,      // Width/thickness of baseline (pixels)
+                m_flSeparatorLineWidth; // Width/thickness of separator line (pixels)
+  int           m_iHistorySize,         // Max number of entries in history array
+                m_iHistoryCount,        // Number of values in history array
+                m_iHistoryIdx;          // Current position in history array
+  NSString      *m_strLabelFmt;         // Label format string
+  UIColor       *m_lineColor,           // Color of plot line
+                *m_baselineColor,       // Color of baseline
+                *m_separatorColor;      // Color of vertical separator
+  UILabel       *m_valueLabel;          // Associated label for to receive value
 }
 
 // Private methods
@@ -88,6 +90,8 @@
 @synthesize baselineValue = m_flBaselineValue;
 @synthesize baselineWidth = m_flBaselineWidth;
 @synthesize baselineColor = m_baselineColor;
+@synthesize separatorColor = m_separatorColor;
+@synthesize separatorWidth = m_flSeparatorLineWidth;
 
 
 #pragma mark - Initialization and Termination
@@ -156,17 +160,36 @@
 //
 - (void) setValue:(float)a_flValue
 {
+  // Is the value NAN?
+  if( !isnan(a_flValue) ) {
+    // Adjust value index and save supplied value
+    m_iHistoryIdx = (m_iHistoryIdx + 1) % m_iHistorySize;
+    m_iHistoryCount = MIN(m_iHistoryCount + 1, m_iHistorySize);
+    m_pHistory[m_iHistoryIdx] = a_flValue;
+    
+    // Update high/low water limits
+    m_flHighWaterValue  = MAX(m_flHighWaterValue, a_flValue);
+    m_flLowWaterValue   = MIN(m_flLowWaterValue, a_flValue);
+
+    // Update the display
+    [self updateValueLabel];
+    [self setNeedsDisplay];
+  }
+}
+
+
+//------------------------------------------------------------------------
+//  Method: addSeparator
+//    This method adds a vertical separator to the history graph.
+//
+- (void) addSeparator
+{
   // Adjust value index and save supplied value
   m_iHistoryIdx = (m_iHistoryIdx + 1) % m_iHistorySize;
   m_iHistoryCount = MIN(m_iHistoryCount + 1, m_iHistorySize);
-  m_pHistory[m_iHistoryIdx] = a_flValue;
+  m_pHistory[m_iHistoryIdx] = NAN;
   
-  // Update high/low water limits
-  m_flHighWaterValue  = MAX(m_flHighWaterValue, a_flValue);
-  m_flLowWaterValue   = MIN(m_flLowWaterValue, a_flValue);
-
-  // Update the display
-  [self updateValueLabel];
+  // Update the display (but not the label)
   [self setNeedsDisplay];
 }
 
@@ -285,6 +308,138 @@
 
 
 //------------------------------------------------------------------------
+//  Method: setDataAsIntArray
+//    This method sets the history buffer from a C-style array of 
+//    integers.
+//
+- (void) setDataAsIntArray:(int *)a_piData 
+                     count:(int)a_iNumValues
+{
+  // Anything in the passed array?
+  if(a_piData && a_iNumValues > 0) {
+    // Yes, will this fit in our current buffer?
+    if(a_iNumValues > m_iHistorySize) {
+      // No, adjust - this clears the existing history
+      [self setCapacity:a_iNumValues];
+    }
+    
+    // Reset high/low values to the first item in the array
+    // ... This ensures they will capture the actual high/low values
+    // ... during the array enumeration step below.
+    m_flHighWaterValue  = m_flLowWaterValue = (float)( a_piData[0] );
+    
+    // Copy the values
+    float *p = m_pHistory;
+    for(int iX = 0; iX < a_iNumValues; ++iX) {
+      // Copy the value and assign high/low limits
+      *p = (float)a_piData[iX];
+      m_flHighWaterValue  = MAX(m_flHighWaterValue, *p);
+      m_flLowWaterValue   = MIN(m_flLowWaterValue, *p);
+      
+      // Next slot...
+      ++p;
+    }
+    
+    // Set indexes etc. as needed.
+    m_iHistoryCount = a_iNumValues;
+    m_iHistoryIdx = m_iHistoryCount - 1;
+  }
+  else {
+    // Empty array - just clear our existing history
+    [self clear];
+  }
+}
+
+
+//------------------------------------------------------------------------
+//  Method: setDataAsFloatArray
+//    This method sets the history buffer from a C-style array of 
+//    single precision floating point values.
+//
+- (void) setDataAsFloatArray:(float *)a_pflData 
+                       count:(int)a_iNumValues
+{
+  // Anything in the passed array?
+  if(a_pflData && a_iNumValues > 0) {
+    // Yes, will this fit in our current buffer?
+    if(a_iNumValues > m_iHistorySize) {
+      // No, adjust - this clears the existing history
+      [self setCapacity:a_iNumValues];
+    }
+    
+    // Reset high/low values to the first item in the array
+    // ... This ensures they will capture the actual high/low values
+    // ... during the array enumeration step below.
+    m_flHighWaterValue  = m_flLowWaterValue = a_pflData[0];
+    
+    // Copy the values
+    float *p = m_pHistory;
+    for(int iX = 0; iX < a_iNumValues; ++iX) {
+      // Copy the value and assign high/low limits
+      *p = (float)a_pflData[iX];
+      m_flHighWaterValue  = MAX(m_flHighWaterValue, *p);
+      m_flLowWaterValue   = MIN(m_flLowWaterValue, *p);
+      
+      // Next slot...
+      ++p;
+    }
+    
+    // Set indexes etc. as needed.
+    m_iHistoryCount = a_iNumValues;
+    m_iHistoryIdx = m_iHistoryCount - 1;
+  }
+  else {
+    // Empty array - just clear our existing history
+    [self clear];
+  }
+}
+
+
+//------------------------------------------------------------------------
+//  Method: setDataAsDoubleArray
+//    This method sets the history buffer from a C-style array of 
+//    double precision floating point values.
+//
+- (void) setDataAsDoubleArray:(double *)a_pflData 
+                        count:(int)a_iNumValues
+{
+  // Anything in the passed array?
+  if(a_pflData && a_iNumValues > 0) {
+    // Yes, will this fit in our current buffer?
+    if(a_iNumValues > m_iHistorySize) {
+      // No, adjust - this clears the existing history
+      [self setCapacity:a_iNumValues];
+    }
+    
+    // Reset high/low values to the first item in the array
+    // ... This ensures they will capture the actual high/low values
+    // ... during the array enumeration step below.
+    m_flHighWaterValue  = m_flLowWaterValue = (float) a_pflData[0];
+    
+    // Copy the values
+    float *p = m_pHistory;
+    for(int iX = 0; iX < a_iNumValues; ++iX) {
+      // Copy the value and assign high/low limits
+      *p = (float)a_pflData[iX];
+      m_flHighWaterValue  = MAX(m_flHighWaterValue, *p);
+      m_flLowWaterValue   = MIN(m_flLowWaterValue, *p);
+      
+      // Next slot...
+      ++p;
+    }
+    
+    // Set indexes etc. as needed.
+    m_iHistoryCount = a_iNumValues;
+    m_iHistoryIdx = m_iHistoryCount - 1;
+  }
+  else {
+    // Empty array - just clear our existing history
+    [self clear];
+  }
+}
+
+
+//------------------------------------------------------------------------
 //  Method: clear
 //    Clears plot history
 //
@@ -386,6 +541,7 @@
 //
 - (void)drawRect:(CGRect)a_rect
 {
+  BOOL                fSep;         // YES = last point was separator
   CGContextRef        ctx;          // Graphics context
   CGRect              rectBounds;   // Bounding rectangle adjusted for multiple of bar size
   float               flXScale,     // Scaling factor for X coordinates
@@ -445,10 +601,46 @@
   //      float flStep = MAX(1.0f, m_iHistorySize / rectBounds.size.width);
   //      for(int iX = 0; iX < m_iHistoryCount; iX = round(iX + flStep)) {
   for(int iX = 0; iX < m_iHistoryCount; ++iX) {
-    // Determine point for this
-    flX = flXScale * iX + flOffsX; 
-    flY = flMax - flYScale * (m_pHistory[iIdx] - flLow);
-    CGContextAddLineToPoint(ctx, flX, flY);
+    // Is this element a separator?
+    if( isnan( m_pHistory[iIdx] ) ) {
+      // Yes, stroke the previous path
+      CGContextStrokePath(ctx);
+      
+      // Determine horizontal location for separator line
+      // ... also configure context for separator
+      flX = flXScale * iX + flOffsX; 
+      
+      // Preserve current context and draw separator line
+      CGContextSaveGState(ctx);
+      CGContextSetStrokeColorWithColor(ctx, m_separatorColor.CGColor);
+      CGContextSetLineWidth(ctx, m_flSeparatorLineWidth);
+      CGContextSetLineDash(ctx, 0.0f, NULL, 0);
+      CGContextMoveToPoint(ctx, flX, CGRectGetMinY(rectBounds));
+      CGContextAddLineToPoint(ctx, flX, CGRectGetMaxY(rectBounds));
+      CGContextStrokePath(ctx);
+      CGContextRestoreGState(ctx);
+      
+      // Save separator state for next real point
+      fSep = YES;
+    }
+    else {
+      // No, add the point to the plot line
+      flX = flXScale * iX + flOffsX; 
+      flY = flMax - flYScale * (m_pHistory[iIdx] - flLow);
+      
+      // Do we need to start new position?
+      if(fSep) {
+        // Set position for next line
+        CGContextMoveToPoint(ctx, flX, flY);
+      }
+      else {
+        // No, just draw a line
+        CGContextAddLineToPoint(ctx, flX, flY);
+      }
+      
+      // Update separator state flag
+      fSep = NO;
+    }
     
     // Update index to get next value from history
     // ... For histories which contain a significantly larger number
@@ -494,6 +686,10 @@
   m_flBaselineValue   = NAN;
   m_flBaselineWidth   = 1.0f;
   m_baselineColor     = [[UIColor grayColor] retain];
+  
+  // Separator items
+  m_flSeparatorLineWidth  = 1.0f;
+  m_separatorColor        = [[UIColor grayColor] retain];
   
   // Initialize plot history
   [self setCapacity:100];

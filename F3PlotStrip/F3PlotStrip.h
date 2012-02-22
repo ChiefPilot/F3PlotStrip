@@ -55,11 +55,20 @@
 @property (readwrite, nonatomic)          float     baselineValue;    // Baseline value, shown as horizontal line
 @property (readwrite, nonatomic, retain)  UIColor   *baselineColor;   // Color of baseline
 @property (readwrite, nonatomic)          float     baselineWidth;    // Thickness of baseline (pixels)
+@property (readwrite, nonatomic, retain)  UIColor   *separatorColor;  // Color of vertical separators
+@property (readwrite, nonatomic)          float     separatorWidth;   // Width of separator (pixels)
 
 // Public methods
--(void) clear;                            // Clears plot history
--(NSArray *) data;                        // Gets array of data
--(void) setData:(NSArray *)a_dataArray;   // Sets complete plot data
+-(void) clear;                                      // Clears plot history
+-(void) addSeparator;                               // Adds separator line to history
+-(NSArray *) data;                                  // Gets array of data
+-(void) setData:(NSArray *)a_dataArray;             // Sets plot data
+-(void) setDataAsIntArray:(int *)a_piData           // Sets plot data from array of integers
+                    count:(int)a_iNumValues;
+-(void) setDataAsFloatArray:(float *)a_pflData      // Sets plot data from array of floats
+                      count:(int)a_iNumValues;
+-(void) setDataAsDoubleArray:(double *)a_pflData    // Sets plot data from array of doubles
+                       count:(int) a_iNumValues;
 -(void) setLabel:(UILabel *)a_label       // Sets associated UILabel and format to receive value
        andFormat:(NSString *)a_strFmt;
 -(void) clearBaseline;                    // Clear baseline value
