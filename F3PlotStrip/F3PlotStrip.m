@@ -560,9 +560,10 @@
   
   // How are we oriented?
   rectBounds  = CGRectInset(self.bounds, m_flLineWidth*2, m_flLineWidth*2);
-  flXScale    = rectBounds.size.width / (m_iHistorySize - 1);
-  flYScale    = rectBounds.size.height / fabs(flHigh - flLow);
   flMax       = rectBounds.size.height + rectBounds.origin.y;
+  flXScale    = rectBounds.size.width / (m_iHistorySize - 1);
+  flYScale    = fabs(flHigh - flLow);
+  flYScale    = rectBounds.size.height / ((flYScale > 0.0f) ? flYScale : 1.0f); // fabs(flHigh - flLow);
   
   // Get stuff needed for drawing
   ctx = UIGraphicsGetCurrentContext();
