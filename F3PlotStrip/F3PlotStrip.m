@@ -608,8 +608,6 @@
     CGContextMoveToPoint(ctx, flX, flY);
     
     // Loop for all values in the history buffer
-    // ... For histories which contain a significantly larger number
-    // ... of values, the following would be more efficient :
     float flStep = MAX(1.0f, _iHistorySize / rectBounds.size.width);
     for(int iX = 0; iX < _iHistoryCount; iX = round(iX + flStep)) {
         // Is this element a separator?
@@ -641,21 +639,17 @@
             
             // Do we need to start new position?
             if(fSep) {
-                // Set position for next line
+                // Set position for next line and reset flag
                 CGContextMoveToPoint(ctx, flX, flY);
+                fSep = NO;
             }
             else {
                 // No, just draw a line
                 CGContextAddLineToPoint(ctx, flX, flY);
             }
-            
-            // Update separator state flag
-            fSep = NO;
         }
         
         // Update index to get next value from history
-        // ... For histories which contain a significantly larger number
-        // ... of values, the following would be more efficient :
         iIdx = (int)(round(iIdx + flStep)) % _iHistorySize;
     }
     CGContextStrokePath(ctx);
