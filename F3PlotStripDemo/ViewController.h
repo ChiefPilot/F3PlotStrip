@@ -6,8 +6,8 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
 #import "F3PlotStrip.h"
+#import <UIKit/UIKit.h>
 
 @interface ViewController : UIViewController
 

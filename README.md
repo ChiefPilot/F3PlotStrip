@@ -7,7 +7,7 @@ For a recent project, I wanted a small widget which could display a small
 graph in a dynamic fashion.   I found several controls which were close,
 but lacked the ability to easily add a single value at a time.   
 
-![Screenshot](https://raw.github.com/ChiefPilot/F3PlotStrip/master/F3PlotStrip.png "Screenshot of Component Demo App")
+![Screenshot](F3PlotStrip.png "Screenshot of Component Demo App")
 
 The resulting control can be used as a dynamic plot line as well as 
 a more static "sparkline" type of widget.    When linked to a UILabel

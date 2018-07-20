@@ -27,11 +27,8 @@
 //  OF SUCH DAMAGE.
 //
 
-
 //---> Get required headers <---------------------------------------------
 #import <UIKit/UIKit.h>
-
-
 
 //------------------------------------------------------------------------
 //------------------------------------------------------------------------
@@ -41,36 +38,36 @@
 @interface F3PlotStrip : UIView
 
 // Properties governing the actual plot
-@property (readwrite, nonatomic)  int       capacity;           // Capacity of plot history
-@property (readonly, nonatomic)   int       count;              // # of values in history
-@property (readwrite, nonatomic)  float     value;              // Most recent value
-@property (readwrite, nonatomic)  float     updateRateFps;      // Maximum redraw rate (frames per second)
-@property (readwrite, nonatomic)  float     upperLimit;         // Upper limit; displayed values clamped to this
-@property (readwrite, nonatomic)  float     lowerLimit;         // Lower limit; displayed values clamped to this
-@property (readwrite, nonatomic)  BOOL      showDot;            // YES = draw dot on most current value
-@property (strong, nonatomic)     UIColor   *lineColor;         // Color of plot line
-@property (readwrite, nonatomic)  float     lineWidth;          // Width of plot line, in pixels
-@property (strong, nonatomic)     UILabel   *label;             // Associated UILabel view (may be nil)
-@property (strong, nonatomic)     NSString  *labelFormat;       // Format string for UILabel text (may be nil)
-@property (readwrite, nonatomic)          float     baselineValue;    // Baseline value, shown as horizontal line
-@property (readwrite, nonatomic, strong)  UIColor   *baselineColor;   // Color of baseline
-@property (readwrite, nonatomic)          float     baselineWidth;    // Thickness of baseline (pixels)
-@property (readwrite, nonatomic, strong)  UIColor   *separatorColor;  // Color of vertical separators
-@property (readwrite, nonatomic)          float     separatorWidth;   // Width of separator (pixels)
+@property (readwrite,nonatomic)  int capacity;                  // Capacity of plot history
+@property (readonly,nonatomic)   int count;                     // # of values in history
+@property (readwrite,nonatomic)  float value;                   // Most recent value
+@property (readwrite,nonatomic)  float updateRateFps;           // Maximum redraw rate (frames per second)
+@property (readwrite,nonatomic)  float upperLimit;              // Upper limit; displayed values clamped to this
+@property (readwrite,nonatomic)  float lowerLimit;              // Lower limit; displayed values clamped to this
+@property (readwrite,nonatomic)  BOOL showDot;                  // YES = draw dot on most current value
+@property (strong,nonatomic)     UIColor* lineColor;            // Color of plot line
+@property (readwrite,nonatomic)  float lineWidth;               // Width of plot line, in pixels
+@property (strong,nonatomic)     UILabel* label;                // Associated UILabel view (may be nil)
+@property (strong,nonatomic)     NSString* labelFormat;         // Format string for UILabel text (may be nil)
+@property (readwrite,nonatomic)          float baselineValue;         // Baseline value, shown as horizontal line
+@property (readwrite,nonatomic,strong)  UIColor* baselineColor;       // Color of baseline
+@property (readwrite,nonatomic)          float baselineWidth;         // Thickness of baseline (pixels)
+@property (readwrite,nonatomic,strong)  UIColor* separatorColor;      // Color of vertical separators
+@property (readwrite,nonatomic)          float separatorWidth;        // Width of separator (pixels)
 
 // Public methods
--(void) clear;                                      // Clears plot history
--(void) addSeparator;                               // Adds separator line to history
--(NSArray *) data;                                  // Gets array of data
--(void) setData:(NSArray *)a_dataArray;             // Sets plot data
--(void) setDataAsIntArray:(int *)a_piData           // Sets plot data from array of integers
-                    count:(int)a_iNumValues;
--(void) setDataAsFloatArray:(float *)a_pflData      // Sets plot data from array of floats
+-(void)clear;                                       // Clears plot history
+-(void)addSeparator;                                // Adds separator line to history
+-(NSArray*)data;                                    // Gets array of data
+-(void)setData:(NSArray*)a_dataArray;               // Sets plot data
+-(void)setDataAsIntArray:(int*)a_piData             // Sets plot data from array of integers
+                   count:(int)a_iNumValues;
+-(void)setDataAsFloatArray:(float*)a_pflData        // Sets plot data from array of floats
+                     count:(int)a_iNumValues;
+-(void)setDataAsDoubleArray:(double*)a_pflData      // Sets plot data from array of doubles
                       count:(int)a_iNumValues;
--(void) setDataAsDoubleArray:(double *)a_pflData    // Sets plot data from array of doubles
-                       count:(int) a_iNumValues;
--(void) setLabel:(UILabel *)a_label       // Sets associated UILabel and format to receive value
-       andFormat:(NSString *)a_strFmt;
--(void) clearBaseline;                    // Clear baseline value
+-(void)setLabel:(UILabel*)a_label         // Sets associated UILabel and format to receive value
+      andFormat:(NSString*)a_strFmt;
+-(void)clearBaseline;                     // Clear baseline value
 
 @end
