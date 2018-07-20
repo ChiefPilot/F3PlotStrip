@@ -84,7 +84,7 @@
                                              [NSNumber numberWithFloat:70.6f],
                                              nil];
   self.tempPlotStrip.showDot = YES;
-  self.tempPlotStrip.capacity = array.count;
+  self.tempPlotStrip.capacity = (int)array.count;
   self.tempPlotStrip.data = array;
   self.tempPlotStrip.lineColor = [UIColor darkGrayColor];
   self.tempPlotStrip.labelFormat = @"%0.1f °F";
@@ -99,7 +99,7 @@
                                     [NSNumber numberWithFloat:60.6f],
                                     nil];
   self.humidityPlotStrip.showDot = YES;
-  self.humidityPlotStrip.capacity = array.count;
+  self.humidityPlotStrip.capacity = (int)array.count;
   self.humidityPlotStrip.data = array;
   self.humidityPlotStrip.lineColor = [UIColor blueColor];
   self.humidityPlotStrip.labelFormat = @"%0.1f %%";
@@ -114,7 +114,7 @@
                                     [NSNumber numberWithFloat:1.60f],
                                     nil];
   self.pressurePlotStrip.showDot = YES;
-  self.pressurePlotStrip.capacity = array.count;
+  self.pressurePlotStrip.capacity = (int)array.count;
   self.pressurePlotStrip.data = array;
   self.pressurePlotStrip.lineColor = [UIColor yellowColor];
   self.pressurePlotStrip.labelFormat = @"%0.2f PSI";
@@ -128,34 +128,6 @@
                                            userInfo:nil 
                                             repeats:YES];
 }
-
-- (void)viewDidUnload
-{
-  // Cancel the timer
-  [m_timer invalidate];
-  
-  // Clean up
-  [self setPlotStrip:nil];
-  [self setValueSlider:nil];
-  [self setPlotStripLabel:nil];
-  [self setTempPlotStrip:nil];
-  [self setTempPlotLabel:nil];
-  [self setHumidityPlotStrip:nil];
-  [self setHumidityPlotLabel:nil];
-  [self setPressurePlotStrip:nil];
-  [self setPressurePlotLabel:nil];
-  [self setSliderPlotStrip:nil];
-  [self setSliderPlotLabel:nil];
-  [self setResetButton:nil];
-  [super viewDidUnload];
-}
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-  // Only portrait orientation for demo
-  return UIInterfaceOrientationIsPortrait(interfaceOrientation);
-}
-
 
 - (void) didGetTimerEvent:(NSTimer *)a_timer
 {

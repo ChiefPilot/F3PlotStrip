@@ -277,7 +277,7 @@
         // Yes, will this fit in our current buffer?
         if(a_dataArray.count > _iHistorySize) {
             // No, adjust - this clears the existing history
-            [self setCapacity:a_dataArray.count];
+            [self setCapacity:(int)a_dataArray.count];
         }
         
         // Reset high/low values to the first item in the array
@@ -298,7 +298,7 @@
         }
         
         // Set indexes etc. as needed.
-        _iHistoryCount = a_dataArray.count;
+        _iHistoryCount = (int)a_dataArray.count;
         _iHistoryIdx = _iHistoryCount - 1;
     }
     else {
@@ -455,10 +455,10 @@
 //
 - (void) clear
 {
-    float     flDefault;                  // Default value
+    //float     flDefault;                  // Default value
     
     // Reset history to default values
-    flDefault = _flLowerLimit + fabs(_flUpperLimit - _flLowerLimit) / 2;
+    //flDefault = _flLowerLimit + fabs(_flUpperLimit - _flLowerLimit) / 2;
     for(int iX = 0; iX < _iHistorySize; ++iX) {
         // Save it
         _pHistory[ iX ] = 0.0f; // flDefault;
@@ -552,7 +552,7 @@
 //
 - (void)drawRect:(CGRect)a_rect
 {
-    BOOL                fSep;         // YES = last point was separator
+    BOOL                fSep = YES;         // YES = last point was separator
     CGContextRef        ctx;          // Graphics context
     CGRect              rectBounds;   // Bounding rectangle adjusted for multiple of bar size
     float               flXScale,     // Scaling factor for X coordinates
